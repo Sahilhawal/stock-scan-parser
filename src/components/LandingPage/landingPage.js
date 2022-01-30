@@ -5,6 +5,7 @@ import StockDetails from "../StockDetail/stockDetails";
 import StockList from "../StockList/stockList";
 import StockDataContext from "../../context/context";
 import "./landingPage.css";
+import CriteriaVariableValues from "../CriteriaVariableValues/criteriaVariableValues";
 
 function LandingPage() {
   const [stocksData, setStocksData] = useState();
@@ -22,6 +23,10 @@ function LandingPage() {
             <Routes>
               <Route index path="/" element={<StockList />} />
               <Route path=":stockId" element={<StockDetails />} />
+              <Route
+                path=":stockId/criteria/:criteriaIndex/variable/:variable"
+                element={<CriteriaVariableValues />}
+              />
             </Routes>
           </BrowserRouter>
         </StockDataContext.Provider>

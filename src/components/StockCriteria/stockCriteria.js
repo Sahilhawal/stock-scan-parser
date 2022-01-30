@@ -1,14 +1,12 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 const reactStringReplace = require("react-string-replace");
 
 function StockCriteria(props) {
   const { criteria = [] } = props.stockData || {};
-  let params = useParams();
-  const { stockId } = params;
 
   const renderStockCriterias = () => {
-    const updatedCriteria = replaceText();
+    const updatedCriteria = replaceTextWithVariableValues();
 
     return updatedCriteria?.map((criteria, i) => {
       return (
@@ -19,14 +17,17 @@ function StockCriteria(props) {
     });
   };
 
-  const replaceText = () => {
+  const replaceTextWithVariableValues = () => {
     return criteria.map((criteria, criteriaIndex) => {
       if (criteria?.type === "variable") {
-        for (var key in criteria.variable) {
-          const variable = criteria.variable[key];
-          criteria.text = reactStringReplace(criteria.text, key, (match, i) => (
-            <Link to={"criteria/" + criteriaIndex + "/variable/" + key}>
-              {getValueOfVariable(variable)}
+        for (var variableKey in criteria.variable) {
+          const variableData = criteria.variable[variableKey];
+          criteria.text = reactStringReplace(criteria.text, variableKey, () => (
+            <Link
+              to={"criteria/" + criteriaIndex + "/variable/" + variableKey}
+              key={"criteria_" + criteriaIndex + "_variable_" + variableKey}
+            >
+              {getValueOfVariable(variableData)}
             </Link>
           ));
         }
@@ -36,10 +37,12 @@ function StockCriteria(props) {
   };
 
   const getValueOfVariable = (variable) => {
-    return variable?.values?.length > 0
+    return variable?.type === "value"
       ? variable?.values[0]
       : variable?.default_value;
   };
+
+  const stringReplacerFunction = (variableData) => {};
 
   return <>{renderStockCriterias()}</>;
 }

@@ -9,6 +9,7 @@ ul.headers {
 ul.headers li {
   padding: 10px;
   border-bottom: 1px dotted #ececec;
+  color: #fff;
 }
 
 ul.headers li a {
