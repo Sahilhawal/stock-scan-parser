@@ -9,37 +9,43 @@ function CriteriaVariableValues() {
   const renderCriteriaVariableValues = (stockContext) => {
     const stock = stockContext?.find((stock) => stock.id === parseInt(stockId));
 
-    const stockCriteriaVariables =
+    const stockCriteriaVariable =
       stock?.criteria[parseInt(criteriaIndex)]?.variable[variable];
 
-    if (stockCriteriaVariables?.type === "value") {
-      return renderValueVariables(stockCriteriaVariables);
-    } else if (stockCriteriaVariables?.type === "indicator") {
-      return renderIndicatorVariables(stock.name, stockCriteriaVariables);
+    if (stockCriteriaVariable?.type === "value") {
+      return renderValueVariables(stockCriteriaVariable);
+    } else if (stockCriteriaVariable?.type === "indicator") {
+      return renderIndicatorVariables(stock.name, stockCriteriaVariable);
     }
   };
 
-  const renderValueVariables = (stockCriteriaVariables) => {
+  const renderValueVariables = (stockCriteriaVariable) => {
     return (
       <ul className="text-left headers">
-        {stockCriteriaVariables.values.map((value) => {
-          return <li>{value}</li>;
+        {stockCriteriaVariable.values.map((value) => {
+          return <li key={"valueVariable_" + value}>{value}</li>;
         })}
       </ul>
     );
   };
 
-  const renderIndicatorVariables = (stockName, stockCriteriaVariables) => {
+  const renderIndicatorVariables = (stockName, stockCriteriaVariable) => {
+    const { default_value, parameter_name } = stockCriteriaVariable;
     return (
       <>
-        <div className="text-left indicator-header">{stockName}</div>
+        <div
+          className="text-left indicator-header"
+          key={"variableValue" + default_value}
+        >
+          {stockName}
+        </div>
         <div className="text-left indicator-sub-header">Set Parameters</div>
         <div className="indicator-variable-section">
-          <div className="left">{stockCriteriaVariables.parameter_name}</div>
+          <div className="left">{parameter_name}</div>
           <input
             type="text"
             name="value"
-            defaultValue={stockCriteriaVariables.default_value}
+            defaultValue={default_value}
             className="right"
           />
         </div>
