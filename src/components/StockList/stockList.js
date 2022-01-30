@@ -11,7 +11,7 @@ function StockList() {
         <ul className="text-left mb-4 headers">
           {stockContext?.map((stock) => {
             return (
-              <li>
+              <li key={stock.id}>
                 <Link to={"/" + stock.id}>
                   <StockListRow stockData={stock} />
                 </Link>
