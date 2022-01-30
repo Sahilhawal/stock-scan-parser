@@ -6,9 +6,9 @@ function StockCriteria(props) {
   const { criteria = [] } = props.stockData || {};
 
   const renderStockCriterias = () => {
-    const updatedCriteria = replaceTextWithVariableValues();
+    const criteriaReplacedWithVariables = replaceTextWithVariableValues();
 
-    return updatedCriteria?.map((criteria, i) => {
+    return criteriaReplacedWithVariables?.map((criteria, i) => {
       return (
         <div className="body-section" key={"criteria_" + i}>
           {criteria?.text}
@@ -27,7 +27,7 @@ function StockCriteria(props) {
               to={"criteria/" + criteriaIndex + "/variable/" + variableKey}
               key={"criteria_" + criteriaIndex + "_variable_" + variableKey}
             >
-              {getValueOfVariable(variableData)}
+              ({getValueOfVariable(variableData)})
             </Link>
           ));
         }
