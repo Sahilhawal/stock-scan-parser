@@ -22,14 +22,9 @@ function StockCriteria(props) {
       if (criteria?.type === "variable") {
         for (var variableKey in criteria.variable) {
           const variableData = criteria.variable[variableKey];
-          criteria.text = reactStringReplace(criteria.text, variableKey, () => (
-            <Link
-              to={"criteria/" + criteriaIndex + "/variable/" + variableKey}
-              key={"criteria_" + criteriaIndex + "_variable_" + variableKey}
-            >
-              ({getValueOfVariable(variableData)})
-            </Link>
-          ));
+          criteria.text = reactStringReplace(criteria.text, variableKey, () =>
+            replacerFunction(criteriaIndex, variableKey, variableData)
+          );
         }
       }
       return criteria;
@@ -40,6 +35,17 @@ function StockCriteria(props) {
     return variable?.type === "value"
       ? variable?.values[0]
       : variable?.default_value;
+  };
+
+  const replacerFunction = (criteriaIndex, variableKey, variableData) => {
+    return (
+      <Link
+        to={"criteria/" + criteriaIndex + "/variable/" + variableKey}
+        key={"criteria_" + criteriaIndex + "_variable_" + variableKey}
+      >
+        ({getValueOfVariable(variableData)})
+      </Link>
+    );
   };
 
   return <>{renderStockCriterias()}</>;
