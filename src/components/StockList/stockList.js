@@ -8,11 +8,11 @@ function StockList() {
   return (
     <StockDataContext.Consumer>
       {(stockContext) => (
-        <ul className="text-left headers">
+        <ul className="text-left headers" data-testid="stock-list">
           {stockContext?.map((stock) => {
             return (
-              <li key={stock.id}>
-                <Link to={"/" + stock.id}>
+              <li key={stock.id} data-testid="stock-list-row">
+                <Link to={"/" + stock.id} data-testid="stock-row-link">
                   <StockListRow stockData={stock} />
                 </Link>
               </li>

@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import "./stockDetails.css";
 import StockCriteria from "../StockCriteria/stockCriteria";
 
-function StockDetails(props) {
+function StockDetails() {
   let params = useParams();
   const { stockId } = params;
 
@@ -13,7 +13,7 @@ function StockDetails(props) {
     const stock = stockContext?.find((stock) => stock.id === parseInt(stockId));
     return (
       <>
-        <div className="header-section">
+        <div className="header-section" data-testid="stock-detail-section">
           <StockListRow stockData={stock} />
         </div>
         <StockCriteria stockData={stock} />

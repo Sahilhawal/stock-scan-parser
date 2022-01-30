@@ -3,10 +3,13 @@ import "./stockListRow.css";
 
 const StockListRow = (props) => {
   const { name = "-", tag = "-", color = "-" } = props?.stockData || {};
+
   return (
     <>
-      <div>{name}</div>
-      <div className={"subtext " + color}>{tag}</div>
+      <div data-testid="stock-name-div">{name}</div>
+      <div data-testid="stock-tag-div" className={"subtext " + color}>
+        {tag}
+      </div>
     </>
   );
 };

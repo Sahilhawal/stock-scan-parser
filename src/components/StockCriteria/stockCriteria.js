@@ -10,7 +10,11 @@ function StockCriteria(props) {
 
     return criteriaReplacedWithVariables?.map((criteria, i) => {
       return (
-        <div className="body-section" key={"criteria_" + i}>
+        <div
+          className="body-section"
+          key={"criteria_" + i}
+          data-testid="criteria-body"
+        >
           {criteria?.text}
         </div>
       );
@@ -31,12 +35,6 @@ function StockCriteria(props) {
     });
   };
 
-  const getValueOfVariable = (variable) => {
-    return variable?.type === "value"
-      ? variable?.values[0]
-      : variable?.default_value;
-  };
-
   const replacerFunction = (criteriaIndex, variableKey, variableData) => {
     return (
       <Link
@@ -46,6 +44,12 @@ function StockCriteria(props) {
         ({getValueOfVariable(variableData)})
       </Link>
     );
+  };
+
+  const getValueOfVariable = (variable) => {
+    return variable?.type === "value"
+      ? variable?.values[0]
+      : variable?.default_value;
   };
 
   return <>{renderStockCriterias()}</>;
