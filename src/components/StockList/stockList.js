@@ -8,7 +8,7 @@ function StockList() {
   return (
     <StockDataContext.Consumer>
       {(stockContext) => (
-        <ul className="text-left mb-4 headers">
+        <ul className="text-left headers">
           {stockContext?.map((stock) => {
             return (
               <li key={stock.id}>
