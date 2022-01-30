@@ -1,0 +1,11 @@
+.header-section {
+  min-height: 40px;
+  background-color: #1686b0;
+  padding: 10px;
+  color: #fff;
+}
+
+.body-section {
+  padding: 10px;
+  color: #fff;
+}
