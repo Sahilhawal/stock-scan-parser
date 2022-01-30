@@ -1,6 +1,7 @@
 import React from "react";
 import StockDataContext from "../../context/context";
 import { useParams } from "react-router-dom";
+import "./criteriaVariableValues.css";
 
 function CriteriaVariableValues() {
   let params = useParams();
