@@ -42,8 +42,6 @@ function StockCriteria(props) {
       : variable?.default_value;
   };
 
-  const stringReplacerFunction = (variableData) => {};
-
   return <>{renderStockCriterias()}</>;
 }
 
