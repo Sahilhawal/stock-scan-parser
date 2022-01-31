@@ -5,13 +5,13 @@ import StockCriteria from "./stockCriteria";
 import { mockData } from "../../helpers/mockData";
 
 describe("When <StockCriteria /> is rendered", () => {
-  it("should display criteria text when criteria type is plain_text", async () => {
+  it("should display criteria text when criteria type is plain_text", () => {
     render(<StockCriteria stockData={mockData[0]} />);
     const criteriaText = screen.getByText(mockData[0].criteria[0].text);
     expect(criteriaText).toBeInTheDocument();
   });
 
-  it("should replace the criteria text with variable value for type variable", async () => {
+  it("should replace the criteria text with variable value for type variable", () => {
     render(
       <Router>
         <StockCriteria stockData={mockData[2]} />

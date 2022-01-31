@@ -21,7 +21,7 @@ const customRenderer = (initialEntries) => {
 };
 
 describe("When <CriteriaVariableValues /> is rendered with context provider", () => {
-  it("should display criteria variable values as a list if type is values", async () => {
+  it("should display criteria variable values as a list if type is values", () => {
     const initialEntries = "/3/criteria/0/variable/$1";
 
     customRenderer(initialEntries);
@@ -33,7 +33,7 @@ describe("When <CriteriaVariableValues /> is rendered with context provider", ()
     expect(stockDetailComponent).toBeInTheDocument();
   });
 
-  it("should display indicator variable section if variable type is indicator", async () => {
+  it("should display indicator variable section if variable type is indicator", () => {
     const initialEntries = "/5/criteria/2/variable/$4";
 
     customRenderer(initialEntries);
@@ -45,7 +45,7 @@ describe("When <CriteriaVariableValues /> is rendered with context provider", ()
     expect(stockDetailComponent).toBeInTheDocument();
   });
 
-  it("should display criteria variable default_value in input feild", async () => {
+  it("should display criteria variable default_value in input feild", () => {
     const initialEntries = "/5/criteria/2/variable/$4";
 
     customRenderer(initialEntries);
@@ -57,7 +57,7 @@ describe("When <CriteriaVariableValues /> is rendered with context provider", ()
     expect(stockDetailComponent).toHaveDisplayValue(14);
   });
 
-  it("should display criteria variable parameter name", async () => {
+  it("should display criteria variable parameter name", () => {
     const initialEntries = "/5/criteria/2/variable/$4";
 
     customRenderer(initialEntries);

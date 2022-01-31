@@ -16,13 +16,13 @@ const customRenderer = () => {
 };
 
 describe("When <StockList /> is rendered with context provider", () => {
-  it("should display stock list", async () => {
+  it("should display stock list", () => {
     customRenderer();
     const listParentComponent = screen.getAllByTestId("stock-list")[0];
     expect(listParentComponent).toBeInTheDocument();
   });
 
-  it("should render all the stocks", async () => {
+  it("should render all the stocks", () => {
     customRenderer();
     const listRowComponent = screen.getAllByTestId("stock-list-row");
     expect(listRowComponent).toHaveLength(mockData.length);
