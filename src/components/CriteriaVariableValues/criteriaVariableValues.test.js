@@ -5,20 +5,26 @@ import CriteriaVariableValues from "./criteriaVariableValues";
 import StockDataContext from "../../context/context";
 import { mockData } from "../../helpers/mockData";
 
+const customRenderer = (initialEntries) => {
+  return render(
+    <StockDataContext.Provider value={mockData}>
+      <Router initialEntries={[initialEntries]}>
+        <Routes>
+          <Route
+            path="/:stockId/criteria/:criteriaIndex/variable/:variable"
+            element={<CriteriaVariableValues />}
+          />
+        </Routes>
+      </Router>
+    </StockDataContext.Provider>
+  );
+};
+
 describe("When <CriteriaVariableValues /> is rendered with context provider", () => {
   it("should display criteria variable values as a list if type is values", async () => {
-    render(
-      <StockDataContext.Provider value={mockData}>
-        <Router initialEntries={["/3/criteria/0/variable/$1"]}>
-          <Routes>
-            <Route
-              path="/:stockId/criteria/:criteriaIndex/variable/:variable"
-              element={<CriteriaVariableValues />}
-            />
-          </Routes>
-        </Router>
-      </StockDataContext.Provider>
-    );
+    const initialEntries = "/3/criteria/0/variable/$1";
+
+    customRenderer(initialEntries);
 
     const stockDetailComponent = screen.getAllByTestId(
       "value-variable-list"
@@ -28,18 +34,9 @@ describe("When <CriteriaVariableValues /> is rendered with context provider", ()
   });
 
   it("should display indicator variable section if variable type is indicator", async () => {
-    render(
-      <StockDataContext.Provider value={mockData}>
-        <Router initialEntries={["/5/criteria/2/variable/$4"]}>
-          <Routes>
-            <Route
-              path="/:stockId/criteria/:criteriaIndex/variable/:variable"
-              element={<CriteriaVariableValues />}
-            />
-          </Routes>
-        </Router>
-      </StockDataContext.Provider>
-    );
+    const initialEntries = "/5/criteria/2/variable/$4";
+
+    customRenderer(initialEntries);
 
     const stockDetailComponent = screen.getAllByTestId(
       "indicator-variable-section"
@@ -49,18 +46,9 @@ describe("When <CriteriaVariableValues /> is rendered with context provider", ()
   });
 
   it("should display criteria variable default_value in input feild", async () => {
-    render(
-      <StockDataContext.Provider value={mockData}>
-        <Router initialEntries={["/5/criteria/2/variable/$4"]}>
-          <Routes>
-            <Route
-              path="/:stockId/criteria/:criteriaIndex/variable/:variable"
-              element={<CriteriaVariableValues />}
-            />
-          </Routes>
-        </Router>
-      </StockDataContext.Provider>
-    );
+    const initialEntries = "/5/criteria/2/variable/$4";
+
+    customRenderer(initialEntries);
 
     const stockDetailComponent = screen.getAllByTestId(
       "indicator-variable-input"
@@ -70,18 +58,9 @@ describe("When <CriteriaVariableValues /> is rendered with context provider", ()
   });
 
   it("should display criteria variable parameter name", async () => {
-    render(
-      <StockDataContext.Provider value={mockData}>
-        <Router initialEntries={["/5/criteria/2/variable/$4"]}>
-          <Routes>
-            <Route
-              path="/:stockId/criteria/:criteriaIndex/variable/:variable"
-              element={<CriteriaVariableValues />}
-            />
-          </Routes>
-        </Router>
-      </StockDataContext.Provider>
-    );
+    const initialEntries = "/5/criteria/2/variable/$4";
+
+    customRenderer(initialEntries);
 
     const stockDetailComponent = screen.getAllByTestId(
       "indicator-variable-parameter-name"

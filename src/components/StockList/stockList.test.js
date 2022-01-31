@@ -5,27 +5,25 @@ import StockList from "./stockList";
 import StockDataContext from "../../context/context";
 import { mockData } from "../../helpers/mockData";
 
+const customRenderer = () => {
+  return render(
+    <StockDataContext.Provider value={mockData}>
+      <Router>
+        <StockList />
+      </Router>
+    </StockDataContext.Provider>
+  );
+};
+
 describe("When <StockList /> is rendered with context provider", () => {
   it("should display stock list", async () => {
-    render(
-      <StockDataContext.Provider value={mockData}>
-        <Router>
-          <StockList />
-        </Router>
-      </StockDataContext.Provider>
-    );
+    customRenderer();
     const listParentComponent = screen.getAllByTestId("stock-list")[0];
     expect(listParentComponent).toBeInTheDocument();
   });
 
-  it("should redirect to stock details page", async () => {
-    render(
-      <StockDataContext.Provider value={mockData}>
-        <Router>
-          <StockList />
-        </Router>
-      </StockDataContext.Provider>
-    );
+  it("should render all the stocks", async () => {
+    customRenderer();
     const listRowComponent = screen.getAllByTestId("stock-list-row");
     expect(listRowComponent).toHaveLength(mockData.length);
   });
