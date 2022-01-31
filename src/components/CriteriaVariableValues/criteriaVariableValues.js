@@ -9,7 +9,6 @@ function CriteriaVariableValues() {
 
   const renderCriteriaVariableValues = (stockContext) => {
     const stock = stockContext?.find((stock) => stock.id === parseInt(stockId));
-
     const stockCriteriaVariable =
       stock?.criteria[parseInt(criteriaIndex)]?.variable[variable];
 
@@ -22,7 +21,7 @@ function CriteriaVariableValues() {
 
   const renderValueVariables = (stockCriteriaVariable) => {
     return (
-      <ul className="text-left headers">
+      <ul className="text-left headers" data-testid="value-variable-list">
         {stockCriteriaVariable.values.map((value) => {
           return <li key={"valueVariable_" + value}>{value}</li>;
         })}
