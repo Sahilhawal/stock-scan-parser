@@ -36,17 +36,21 @@ function CriteriaVariableValues() {
         <div
           className="text-left indicator-header"
           key={"variableValue" + default_value}
+          data-testid="indicator-variable-section"
         >
           {stockName}
         </div>
         <div className="text-left indicator-sub-header">Set Parameters</div>
         <div className="indicator-variable-section">
-          <div className="left">{parameter_name}</div>
+          <div className="left" data-testid="indicator-variable-parameter-name">
+            {parameter_name}
+          </div>
           <input
             type="text"
             name="value"
             defaultValue={default_value}
             className="right"
+            data-testid="indicator-variable-input"
           />
         </div>
       </>
